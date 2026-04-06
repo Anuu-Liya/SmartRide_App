@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'service_screen.dart';
+import 'garage_finder_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -61,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                     color: const Color(0xFF1A1A1A),
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.green.withOpacity(0.5)),
+                    border: Border.all(color: Colors.green.withValues(alpha: 0.5)),
                   ),
                   child: Row(
                     children: [
@@ -104,7 +105,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 _buildQuickAction("Service History", Icons.history, () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const ServiceScreen()));
                 }),
-                _buildQuickAction("Find Nearby Mechanic", Icons.location_on, () {}),
+                _buildQuickAction("Find Nearby Mechanic", Icons.location_on, () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const GarageFinderScreen()),
+                  );
+                }),
                 const SizedBox(height: 30),
               ],
             ),

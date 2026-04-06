@@ -16,6 +16,7 @@ class _MaintenanceScreenState extends State<MaintenanceScreen> {
   // කැමරාවෙන් හෝ ගැලරියෙන් ඡායාරූපයක් ලබා ගැනීම
   Future<void> _pickImage(ImageSource source) async {
     final pickedFile = await _picker.pickImage(source: source);
+    if (!mounted) return;
     if (pickedFile != null) {
       setState(() {
         _image = File(pickedFile.path);

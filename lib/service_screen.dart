@@ -60,7 +60,7 @@ class ServiceScreen extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 15),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: const Color(0xFFF3E5F5).withOpacity(0.5), // ලා දම් පැහැය
+        color: const Color(0xFFF3E5F5).withValues(alpha: 0.5), // ලා දම් පැහැය
         borderRadius: BorderRadius.circular(15),
       ),
       child: Column(
