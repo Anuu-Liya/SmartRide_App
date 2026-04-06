@@ -8,6 +8,27 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+import java.util.Properties
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.inputStream().use { localProperties.load(it) }
+}
+
+val mapsProperties = Properties()
+val mapsPropertiesFile = rootProject.file("maps.properties")
+if (mapsPropertiesFile.exists()) {
+    mapsPropertiesFile.inputStream().use { mapsProperties.load(it) }
+}
+
+val mapsApiKey: String = (
+    mapsProperties.getProperty("MAPS_API_KEY")
+        ?: localProperties.getProperty("MAPS_API_KEY")
+        ?: System.getenv("MAPS_API_KEY")
+        ?: ""
+).trim()
+
 android {
     namespace = "com.example.smart_ride_app"
     compileSdk = flutter.compileSdkVersion
@@ -35,6 +56,9 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+        // Google Maps API key (set in android/maps.properties or android/local.properties)
+        manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey
     }
 
     buildTypes {
