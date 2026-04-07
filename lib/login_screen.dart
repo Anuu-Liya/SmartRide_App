@@ -106,11 +106,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   const Text("Don't have an account? ", style: TextStyle(color: Colors.white)),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
+                    onTap: () async {
+                      final result = await Navigator.push<String>(
                         context,
                         MaterialPageRoute(builder: (context) => const SignupScreen()),
                       );
+
+                      if (!context.mounted) return;
+                      if (result != null && result.isNotEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(result)),
+                        );
+                      }
                     },
                     child: const Text("Sign Up", style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
                   ),
