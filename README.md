@@ -2,6 +2,10 @@
 
 A new Flutter project.
 
+## Diagrams
+
+- See [docs/diagrams.md](docs/diagrams.md) for the high-level architecture diagram and ER diagram (Mermaid).
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
